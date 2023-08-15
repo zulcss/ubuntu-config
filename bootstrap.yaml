@@ -1,0 +1,17 @@
+---
+mmdebstrap:
+  suite: lunar
+
+  setup-hooks:
+    - 'sync-in overlay/ubuntu/ /'
+
+  customize-hooks:
+    - echo 'root:root' | chroot "$1" chpasswd
+    - echo "localhost" > $1/etc/hostname
+
+  packages:
+    - linux-image-generic
+    - ostree
+    - ostree-boot
+    - dracut
+    - systemd-boot
